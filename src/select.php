@@ -41,7 +41,7 @@ class select extends database
         return $this;
     }
 
-    public function getColunas()
+    private function getColunas()
     {
         return implode(', ', $this->sColunas);
     }
@@ -78,6 +78,8 @@ class select extends database
             }
         } catch (\mysqli_sql_exception | \Exception $ex) {
             $this->log($ex->__toString());
+        } finally {
+            return $this;
         }
     }
 
@@ -98,11 +100,7 @@ class select extends database
 
     public function fetch(): array|false|null
     {
-        if (empty($this->sPreparado)) {
-            return mysqli_fetch_array($this->sResult, MYSQLI_ASSOC);
-        } else {
-            return mysqli_fetch_array($this->sQuery, MYSQLI_ASSOC);
-        }
+        return (empty($this->sPreparado)) ? mysqli_fetch_array($this->sResult, MYSQLI_ASSOC) : mysqli_fetch_array($this->sQuery, MYSQLI_ASSOC);
     }
 
     public function rows(array $rows)
