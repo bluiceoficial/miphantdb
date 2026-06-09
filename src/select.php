@@ -2,9 +2,11 @@
 // Copyright (C) 2025-2026 Murilo Gomes Julio
 // SPDX-License-Identifier: LGPL-2.1-only
 
-// Site: https://mugomes.github.io
+// Site: https://www.bluice.com.br
 
 namespace MiPhantDB;
+
+use Deprecated;
 
 class select extends database
 {
@@ -77,7 +79,7 @@ class select extends database
                 }
             }
         } catch (\mysqli_sql_exception | \Exception $ex) {
-            $this->log($ex->__toString());
+            $this->log($ex);
         } finally {
             return $this;
         }
@@ -98,9 +100,22 @@ class select extends database
         $this->sQuery = mysqli_stmt_get_result($this->sResult);
     }
 
+    #[Deprecated(reason: 'replaced by fetchArray due to the emergence of the fetchAssoc method.', '4.1.0')]
     public function fetch(): array|false|null
     {
         return (empty($this->sPreparado)) ? mysqli_fetch_array($this->sResult, MYSQLI_ASSOC) : mysqli_fetch_array($this->sQuery, MYSQLI_ASSOC);
+    }
+
+    public function fetchArray(int $mode = MYSQLI_ASSOC):array|false|null {
+        return (empty($this->sPreparado)) ? mysqli_fetch_array($this->sResult, $mode) : mysqli_fetch_array($this->sQuery, $mode);
+    }
+
+    public function fetchAssoc():array|false|null {
+        return (empty($this->sPreparado)) ? mysqli_fetch_assoc($this->sResult) : mysqli_fetch_assoc($this->sQuery);
+    }
+
+    public function fetchAll():array|false|null {
+        return (empty($this->sPreparado)) ? mysqli_fetch_all($this->sResult, MYSQLI_ASSOC) : mysqli_fetch_all($this->sQuery, MYSQLI_ASSOC);
     }
 
     public function rows(array $rows)
