@@ -2,7 +2,7 @@
 // Copyright (C) 2025-2026 Murilo Gomes Julio
 // SPDX-License-Identifier: LGPL-2.1-only
 
-// Site: https://mugomes.github.io
+// Site: https://www.bluice.com.br
 
 namespace MiPhantDB;
 
@@ -16,6 +16,7 @@ class table extends database
     private bool $ctLongText = false;
     private bool $ctMediumText = false;
     private bool $ctText = false;
+    private bool $ctDateTime = false;
     private bool $ctNull = false;
     private bool $ctAutoIncrement = false;
     private bool $ctPrimaryKey = false;
@@ -31,6 +32,7 @@ class table extends database
         $this->ctLongText = false;
         $this->ctMediumText = false;
         $this->ctText = false;
+        $this->ctDateTime = false;
         $this->ctNull = false;
         $this->ctAutoIncrement = false;
         $this->ctPrimaryKey = false;
@@ -70,6 +72,11 @@ class table extends database
     public function text()
     {
         $this->ctText = true;
+        return $this;
+    }
+
+    public function datetime() {
+        $this->ctDateTime = true;
         return $this;
     }
 
@@ -136,6 +143,8 @@ class table extends database
             $sql .= ' MEDIUMTEXT';
         } elseif ($this->ctText) {
             $sql .= ' TEXT';
+        } elseif ($this->ctDateTime) {
+            $sql .= ' DATETIME';
         } else {
             $sql .= ($this->ctInt) ? ' int(' . $this->ciTamanho . ')' : ' varchar(' . $this->ctTamanho . ')';
         }
@@ -182,7 +191,7 @@ class table extends database
             $this->sFechaResult = false;
             $this->cleanAll();
         } catch (\mysqli_sql_exception $ex) {
-            $this->log($ex->__toString());
+            $this->log($ex);
         } finally {
             return $this;
         }
@@ -206,12 +215,12 @@ class table extends database
                 $txt = sprintf('ALTER TABLE %s MODIFY %s', $this->getTable(), $columns);
             }
 
-            mysqli_query($this->sConecta, $txt);
+            if (isset($txt)) mysqli_query($this->sConecta, $txt);
 
             $this->sFechaResult = false;
             $this->cleanAll();
         } catch (\mysqli_sql_exception $ex) {
-            $this->log($ex->__toString());
+            $this->log($ex);
         }
     }
 
@@ -228,7 +237,7 @@ class table extends database
                 mysqli_free_result($this->sResult);
             }
         } catch (\mysqli_sql_exception $ex) {
-            $this->log($ex->__toString());
+            $this->log($ex);
         } finally {
             return $txt;
         }

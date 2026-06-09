@@ -2,7 +2,7 @@
 // Copyright (C) 2025-2026 Murilo Gomes Julio
 // SPDX-License-Identifier: LGPL-2.1-only
 
-// Site: https://mugomes.github.io
+// Site: https://www.bluice.com.br
 
 namespace MiPhantDB;
 
@@ -55,7 +55,7 @@ class insert extends database
             $this->sInsert = [];
             $this->sPreparado = [];
         } catch (\mysqli_sql_exception $ex) {
-            $this->log($ex->__toString());
+            $this->log($ex);
         } finally {
             return $this;
         }

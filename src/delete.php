@@ -2,7 +2,7 @@
 // Copyright (C) 2025-2026 Murilo Gomes Julio
 // SPDX-License-Identifier: LGPL-2.1-only
 
-// Site: https://mugomes.github.io
+// Site: https://www.bluice.com.br
 
 namespace MiPhantDB;
 
