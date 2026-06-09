@@ -28,7 +28,7 @@ Ideal para projetos que precisam de **produtividade**, **performance**, **CLIs**
 ### Via Composer (recomendado)
 
 ```bash
-composer require mugomes/miphantdb
+composer require bluiceoficial/miphantdb
 ```
 
 ### Manual
@@ -238,16 +238,16 @@ $select->close();
 
 **Murilo Gomes Julio**
 
-🔗 [https://mugomes.github.io](https://mugomes.github.io)
+🔗 [https://www.bluice.com.br](https://www.bluice.com.br)
 
-📺 [https://youtube.com/@mugomesoficial](https://youtube.com/@mugomesoficial)
+📺 [https://youtube.com/@bluiceoficial](https://youtube.com/@bluiceoficial)
 
 ---
 
 ## 🤝 Support
 
-* GitHub Sponsors: [https://github.com/sponsors/mugomes](https://github.com/sponsors/mugomes)
-* Apoie o projeto: [https://mugomes.github.io/apoie.html](https://mugomes.github.io/apoie.html)
+* GitHub Sponsors: [https://github.com/sponsors/bluiceoficial](https://github.com/sponsors/bluiceoficial)
+* Apoie o projeto: [https://www.bluice.com.br/apoie/](https://www.bluice.com.br/apoie/)
 
 ---
 
@@ -255,7 +255,7 @@ $select->close();
 
 The MiPhantDB is provided under:
 
-[SPDX-License-Identifier: LGPL-2.1-only](https://github.com/mugomes/miphantdb/blob/main/LICENSE)
+[SPDX-License-Identifier: LGPL-2.1-only](https://github.com/bluiceoficial/miphantdb/blob/main/LICENSE)
 
 Beign under the terms of the GNU Lesser General Public License version 2.1 only.
 
