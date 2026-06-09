@@ -48,6 +48,14 @@ class database
         $this->sCharset = $value;
     }
 
+    public function commit(int $flags = 0, ?string $name = null) {
+        return mysqli_commit($this->sConecta, $flags, $name);
+    }
+
+    public function rollback(int $flags = 0, ?string $name = null):bool {
+        return mysqli_rollback($this->sConecta, $flags, $name);
+    }
+
     public function multiQuery(string $sql): bool
     {
         return mysqli_multi_query($this->sConecta, $sql);
